@@ -1,0 +1,51 @@
+<h1>
+    Random Play:
+</h1>
+<div>
+Lives:
+<% var i; %>
+<% for (i = 0; i < vidas; i++) { %>
+     <img src="/images/heart.png" width="1%"/>
+<% } %>
+<div>
+
+<div>
+    Successful answers = <span id="score"><%= score %></span>
+</div>
+
+<form method="get" action="/quizzes/randomcheck/<%= quiz.id %>">
+
+    <p>
+        Question: <b><%= quiz.question %></b>
+    </p>
+
+
+    <div class="wideRow">
+        <input type="text" class="itemWide" id="answer" name="answer" value="" placeholder="Answer" autocomplete="off"/>
+        <input type="submit" class="itemNarrow" id="send" value="Check">
+    </div>
+</form>
+
+
+<h1>
+    Tips:
+</h1>
+
+<% var tips = quiz.tips; %>
+<ul>
+    <% for (var i in tips) { %>
+        <% var tip = tips[i]; %>
+
+        <% var accepted = tip.accepted; %>
+
+        <% if (accepted) { %>
+
+            <li>
+                <%= tip.text %>
+		(by <%= tip.author ? tip.author.username : "Anonymous"%>)
+
+            </li>
+        <% } %>
+    <% } %>
+</ul>
+
